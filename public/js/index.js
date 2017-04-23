@@ -10,13 +10,10 @@ socket.on('disconnect', function () {
 
 socket.on('newMessage', function (message) {
   console.log('New message! ', message);
-});
+  let li = $('<li></li>');
+  li.text(`${message.from}: ${message.text}`);
 
-socket.emit('createMessage', {
-  from: 'Frank',
-  text: 'Hello!'
-}, function (data) {
-  console.log('Got it!', data);
+  $('#messages').append(li);
 });
 
 $('#messageForm').on('submit', function (e) {
